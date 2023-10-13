@@ -11,9 +11,28 @@ const entities = [
     { id: 10, name: "entity_10" },
 ];
 
-const findById = (entityId) => { return entities.find(item => item.id == entityId).name }
+const findById = (entityId) => { return entities.find(item => item.id === entityId).name }
+
+const addEntity = (newEntity) => {
+    entities.push(newEntity);
+};
+
+const updateEntity = (entityId, newEntityName) => { 
+    const entityToUpdateIndex = entities.findIndex(item => item.id === entityId);
+    entities.at(entityToUpdateIndex).name = newEntityName;
+};
+
+const removeEntity = (entityId) => { 
+    const entityToDeleteIndex = entities.findIndex(item => item.id === entityId);
+    entities.splice(entityToDeleteIndex, 1);
+}
+
+
 
 module.exports = {
     data: entities,
-    find: findById
+    find: findById,
+    add: addEntity,
+    update: updateEntity,
+    remove: removeEntity
 };
